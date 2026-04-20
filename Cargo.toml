@@ -4,8 +4,9 @@ version = "0.0.0"
 edition = "2024"
 rust-version = "1.85"
 license = "Apache-2.0 OR MPL-2.0"
+readme = "README.md"
 repository = "https://github.com/metastable-void/philharmonic-connector-impl-sql-postgres"
-description = "Placeholder. Part of the Philharmonic workspace."
+description = "PostgreSQL connector implementation for Philharmonic (sql_query capability)."
 
 [dependencies]
 
