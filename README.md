@@ -2,6 +2,8 @@
 
 Part of the Philharmonic workspace: https://github.com/metastable-void/philharmonic-workspace
 
+`philharmonic-connector-impl-sql-postgres` provides the `sql_postgres` connector implementation for the `sql_query` capability. It validates decrypted connector config and request payloads, executes parameterized PostgreSQL SQL via `sqlx` (tokio + rustls), applies timeout and row-cap clamping rules from the connector wire protocol, maps SQL result values into the normalized JSON response shape (`rows`, `row_count`, `columns`, `truncated`), and maps execution failures into typed `ImplementationError` variants used by the connector service framework.
+
 ## Contributing
 
 This crate is developed as a submodule of the Philharmonic
