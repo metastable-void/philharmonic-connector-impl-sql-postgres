@@ -44,7 +44,7 @@ async fn sql_type_mapping_matches_wire_shape() {
     )
     .bind(42_i64)
     .bind(3.25_f64)
-    .bind("123.4500")
+    .bind("123.4500".parse::<sqlx::types::BigDecimal>().unwrap())
     .bind(true)
     .bind("hello")
     .bind(vec![0x61_u8, 0x62_u8, 0x63_u8])

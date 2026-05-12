@@ -52,7 +52,7 @@ pub(crate) fn decode_cell(
 
         "numeric" | "decimal" => numeric_string_to_json(
             column_name,
-            try_get::<String>(row, index, column_name, sql_type)?,
+            try_get::<sqlx::types::BigDecimal>(row, index, column_name, sql_type)?.to_string(),
         ),
 
         "bool" => Ok(JsonValue::Bool(try_get::<bool>(
@@ -206,10 +206,11 @@ fn decode_array_cell(
                 .collect(),
         )),
         "numeric" | "decimal" => {
-            let values = try_get::<Vec<String>>(row, index, column_name, sql_type)?;
+            let values =
+                try_get::<Vec<sqlx::types::BigDecimal>>(row, index, column_name, sql_type)?;
             let mut out = Vec::with_capacity(values.len());
             for value in values {
-                out.push(numeric_string_to_json(column_name, value)?);
+                out.push(numeric_string_to_json(column_name, value.to_string())?);
             }
             Ok(JsonValue::Array(out))
         }
