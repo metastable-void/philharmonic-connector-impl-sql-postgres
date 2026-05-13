@@ -9,9 +9,16 @@ this crate adheres to
 
 ## [Unreleased]
 
-Implementation pending. See the
-[Philharmonic workspace ROADMAP](https://github.com/metastable-void/philharmonic-workspace/blob/main/ROADMAP.md)
-for the phase that populates this crate.
+## [0.1.1] - 2026-05-13
+
+- Dev: migrate integration-test fixtures from `testcontainers` /
+  `testcontainers-modules` to `dockerlet 0.1`. No public-API
+  change; runtime behaviour unchanged.
+
+## [0.1.0]
+
+Initial functional release. Implements the PostgreSQL `sql_query`
+connector capability with Docker-gated integration tests.
 
 ## [0.0.0]
 

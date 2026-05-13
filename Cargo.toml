@@ -1,6 +1,6 @@
 [package]
 name = "philharmonic-connector-impl-sql-postgres"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2024"
 rust-version = "1.88"
 license = "Apache-2.0 OR MPL-2.0"
@@ -21,15 +21,15 @@ thiserror = "2"
 tokio = { version = "1", features = ["rt", "macros", "time"] }
 
 [dev-dependencies]
+dockerlet = "0.1"
 # `serial_test::file_serial(key = "docker")` serializes
-# Docker-backed testcontainer tests across test crates so
+# Docker-backed integration tests across test crates so
 # that spinning up multiple Postgres containers in parallel
 # doesn't OOM the host. Works cross-process via a lockfile,
 # which is what cargo test's "each tests/*.rs is its own
 # binary" execution model needs.
 serial_test = { version = "3", features = ["file_locks"] }
-testcontainers = { version = "0.27", default-features = false, features = ["aws-lc-rs"] }
-tokio = { version = "1", features = ["rt", "macros", "time", "test-util"] }
+tokio = { version = "1", features = ["rt", "rt-multi-thread", "macros", "time", "test-util"] }
 
 [profile.release]
 opt-level = 3
