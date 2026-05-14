@@ -1,6 +1,6 @@
 [package]
 name = "philharmonic-connector-impl-sql-postgres"
-version = "0.1.1"
+version = "0.1.2"
 edition = "2024"
 rust-version = "1.88"
 license = "Apache-2.0 OR MPL-2.0"
@@ -9,16 +9,16 @@ repository = "https://github.com/metastable-void/philharmonic-connector-impl-sql
 description = "PostgreSQL connector implementation for Philharmonic (sql_query capability)."
 
 [dependencies]
-async-trait = "0.1"
-base64 = "0.22"
-futures-util = "0.3"
+async-trait = { version = "0.1", default-features = false, features = [] }
+base64 = { version = "0.22", default-features = false, features = ["alloc"] }
+futures-util = { version = "0.3", default-features = false, features = ["std"] }
 philharmonic-connector-common = "0.2"
 philharmonic-connector-impl-api = "0.1"
-serde = { version = "1", features = ["derive"] }
-serde_json = "1"
+serde = { version = "1", default-features = false, features = ["derive", "std"] }
+serde_json = { version = "1", default-features = false, features = ["std"] }
 sqlx = { version = "0.8", default-features = false, features = ["postgres", "runtime-tokio", "tls-rustls-aws-lc-rs", "json", "chrono", "uuid", "bigdecimal"] }
-thiserror = "2"
-tokio = { version = "1", features = ["rt", "macros", "time"] }
+thiserror = { version = "2", default-features = false, features = ["std"] }
+tokio = { version = "1", default-features = false, features = ["macros", "rt", "time"] }
 
 [dev-dependencies]
 dockerlet = "0.1"
@@ -28,8 +28,8 @@ dockerlet = "0.1"
 # doesn't OOM the host. Works cross-process via a lockfile,
 # which is what cargo test's "each tests/*.rs is its own
 # binary" execution model needs.
-serial_test = { version = "3", features = ["file_locks"] }
-tokio = { version = "1", features = ["rt", "rt-multi-thread", "macros", "time", "test-util"] }
+serial_test = { version = "3", default-features = false, features = ["file_locks"] }
+tokio = { version = "1", default-features = false, features = ["macros", "rt", "rt-multi-thread", "time"] }
 
 [profile.release]
 opt-level = 3
